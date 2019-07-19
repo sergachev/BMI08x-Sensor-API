@@ -68,25 +68,11 @@
 /** \name       Common macros                   */
 /*********************************************************************/
 
-#if !defined(UINT8_C) && !defined(INT8_C)
-#define INT8_C(x)       S8_C(x)
-#define UINT8_C(x)      U8_C(x)
-#endif
+#define INT8_C(value) ((int8_t) value)
+#define UINT8_C(value) ((uint8_t) value)
+#define INT16_C(value) ((int16_t) value)
+#define UINT16_C(value) ((uint16_t) value)
 
-#if !defined(UINT16_C) && !defined(INT16_C)
-#define INT16_C(x)      S16_C(x)
-#define UINT16_C(x)     U16_C(x)
-#endif
-
-#if !defined(INT32_C) && !defined(UINT32_C)
-#define INT32_C(x)      S32_C(x)
-#define UINT32_C(x)     U32_C(x)
-#endif
-
-#if !defined(INT64_C) && !defined(UINT64_C)
-#define INT64_C(x)      S64_C(x)
-#define UINT64_C(x)     U64_C(x)
-#endif
 
 /**\name C standard macros */
 #ifndef NULL
@@ -107,11 +93,11 @@
 
 /** \name enable bmi085 sensor */
 #ifndef BMI08X_ENABLE_BMI085
-#define BMI08X_ENABLE_BMI085       1
+#define BMI08X_ENABLE_BMI085       0
 #endif
 /** \name enable bmi088 sensor */
 #ifndef BMI08X_ENABLE_BMI088
-#define BMI08X_ENABLE_BMI088       0
+#define BMI08X_ENABLE_BMI088       1
 #endif
 
 /** \name enable bmi08x sensor */
