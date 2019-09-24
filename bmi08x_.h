@@ -39,17 +39,17 @@
  * No license is granted by implication or otherwise under any patent or
  * patent rights of the copyright holder.
  *
- * @file       bmi085.h
+ * @file       bmi08x_.h
  * @date       24 Aug 2018
  * @version    1.2.0
  *
  */
 
-/*! \file bmi085.h
- \brief Sensor Driver for BMI085 family of sensors */
+/*! \file bmi08x_.h
+ \brief Sensor Driver for BMI08x family of sensors */
 
-#ifndef BMI085_H_
-#define BMI085_H_
+#ifndef BMI08X__H_
+#define BMI08X__H_
 
 #ifdef __cplusplus
 extern "C"
@@ -61,7 +61,6 @@ extern "C"
 /**********************************************************************************/
 /* header files */
 #include "bmi08x_defs.h"
-#if BMI08X_FEATURE_BMI085 == 1
 /**********************************************************************************/
 /* (extern) variable declarations */
 /**********************************************************************************/
@@ -69,7 +68,7 @@ extern "C"
 /**********************************************************************************/
 /* function prototype declarations */
 /*!
- *  @brief This API is the entry point for bmi085 sensors.
+ *  @brief This API is the entry point for bmi08x sensors.
  *  It performs the selection of I2C/SPI read mechanism according to the
  *  selected interface and reads the chip-id of accel & gyro sensors.
  *
@@ -80,17 +79,17 @@ extern "C"
  *  @return Result of API execution status
  *  @retval zero -> Success / -ve value -> Error
  */
-int8_t bmi085_init(struct bmi08x_dev *dev);
+int8_t bmi08x_init(struct bmi08x_dev *dev);
 
 /*!
- *  @brief This API uploads the bmi085 config file onto the device.
+ *  @brief This API uploads the bmi08x config file onto the device.
  *
  *  @param[in,out] dev  : Structure instance of bmi08x_dev.
  *
  *  @return Result of API execution status
  *  @retval zero -> Success / -ve value -> Error
  */
-int8_t bmi085_apply_config_file(struct bmi08x_dev *dev);
+int8_t bmi08x_apply_config_file(struct bmi08x_dev *dev);
 
 /*!
  *  @brief This API is used to enable/disable the data synchronization
@@ -102,7 +101,7 @@ int8_t bmi085_apply_config_file(struct bmi08x_dev *dev);
  *  @return Result of API execution status
  *  @retval zero -> Success / -ve value -> Error
  */
-int8_t bmi085_configure_data_synchronization(struct bmi08x_data_sync_cfg sync_cfg, struct bmi08x_dev *dev);
+int8_t bmi08x_configure_data_synchronization(struct bmi08x_data_sync_cfg sync_cfg, struct bmi08x_dev *dev);
 
 /*!
  *  @brief This API is used to enable/disable and configure the anymotion
@@ -114,10 +113,10 @@ int8_t bmi085_configure_data_synchronization(struct bmi08x_data_sync_cfg sync_cf
  *  @return Result of API execution status
  *  @retval zero -> Success / -ve value -> Error
  */
-int8_t bmi085_configure_anymotion(struct bmi08x_anymotion_cfg anymotion_cfg, const struct bmi08x_dev *dev);
+int8_t bmi08x_configure_anymotion(struct bmi08x_anymotion_cfg anymotion_cfg, const struct bmi08x_dev *dev);
 /*!
  *  @brief This API reads the synchronized accel & gyro data from the sensor,
- *  store it in the bmi085_sensor_data structure instance
+ *  store it in the bmi08x_sensor_data structure instance
  *  passed by the user.
  *
  *  @param[out] accel  : Structure pointer to store accel data
@@ -128,7 +127,7 @@ int8_t bmi085_configure_anymotion(struct bmi08x_anymotion_cfg anymotion_cfg, con
  *  @return Result of API execution status
  *  @retval zero -> Success / -ve value -> Error
  */
-int8_t bmi085_get_synchronized_data(struct bmi08x_sensor_data *accel, struct bmi08x_sensor_data *gyro,
+int8_t bmi08x_get_synchronized_data(struct bmi08x_sensor_data *accel, struct bmi08x_sensor_data *gyro,
 		const struct bmi08x_dev *dev);
 /*!
  *  @brief This API configures the synchronization interrupt
@@ -142,13 +141,11 @@ int8_t bmi085_get_synchronized_data(struct bmi08x_sensor_data *accel, struct bmi
  *  @return Result of API execution status
  *  @retval zero -> Success / -ve value -> Error
  */
-int8_t bmi085_set_data_sync_int_config(const struct bmi08x_int_cfg *int_config, const struct bmi08x_dev *dev);
+int8_t bmi08x_set_data_sync_int_config(const struct bmi08x_int_cfg *int_config, const struct bmi08x_dev *dev);
 
 #endif
 #ifdef __cplusplus
 }
 #endif
-
-#endif /* BMI085_H_ */
 
 /** @}*/

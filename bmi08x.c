@@ -39,21 +39,20 @@
  * No license is granted by implication or otherwise under any patent or
  * patent rights of the copyright holder.
  *
- * @file        bmi088.c
+ * @file        bmi08x.c
  * @date        24 Aug 2018
  * @version     1.2.0
  *
  */
 
-/*! \file bmi088.c
- \brief Sensor Driver for BMI085 family of sensors */
+/*! \file bmi08x.c
+ \brief Sensor Driver for BMI08x family of sensors */
 /****************************************************************************/
 /**\name        Header files
  ****************************************************************************/
 #include "bmi08x.h"
-#include "bmi088.h"
+#include "bmi08x_.h"
 
-#if BMI08X_FEATURE_BMI088 == 1
 /****************************************************************************/
 /** \name       Macros
  ****************************************************************************/
@@ -86,18 +85,18 @@ extern const uint8_t bmi08x_config_file[];
 /**\name        Function definitions
  ****************************************************************************/
 /*!
- *  @brief This API is the entry point for bmi088 sensors.
+ *  @brief This API is the entry point for bmi08x sensors.
  *  It performs the selection of I2C/SPI read mechanism according to the
  *  selected interface and reads the chip-id of accel & gyro sensors.
  */
-int8_t bmi088_init(struct bmi08x_dev *dev)
+int8_t bmi08x_init(struct bmi08x_dev *dev)
 {
 	int8_t rslt;
-	/*initialize bmi088 accel sensor*/
+	/*initialize bmi08x accel sensor*/
 	rslt = bmi08a_init(dev);
 
 	if (rslt == BMI08X_OK) {
-		/*initialize bmi088 gyro sensor*/
+		/*initialize bmi08x gyro sensor*/
 		rslt = bmi08g_init(dev);
 	}
 
@@ -105,9 +104,9 @@ int8_t bmi088_init(struct bmi08x_dev *dev)
 }
 
 /*!
- *  @brief This API uploads the bmi088 config file onto the device.
+ *  @brief This API uploads the bmi08x config file onto the device.
  */
-int8_t bmi088_apply_config_file(struct bmi08x_dev *dev)
+int8_t bmi08x_apply_config_file(struct bmi08x_dev *dev)
 {
 	int8_t rslt;
 	/* Check for null pointer in the device structure */
@@ -127,7 +126,7 @@ int8_t bmi088_apply_config_file(struct bmi08x_dev *dev)
  *  @brief This API is used to enable/disable and configure the data synchronization
  *  feature.
  */
-int8_t bmi088_configure_data_synchronization(struct bmi08x_data_sync_cfg sync_cfg, struct bmi08x_dev *dev)
+int8_t bmi08x_configure_data_synchronization(struct bmi08x_data_sync_cfg sync_cfg, struct bmi08x_dev *dev)
 {
 	int8_t rslt;
 	uint16_t data[BMI08X_ACCEL_DATA_SYNC_LEN];
@@ -179,7 +178,7 @@ int8_t bmi088_configure_data_synchronization(struct bmi08x_data_sync_cfg sync_cf
  *  @brief This API is used to enable/disable and configure the anymotion
  *  feature.
  */
-int8_t bmi088_configure_anymotion(struct bmi08x_anymotion_cfg anymotion_cfg, const struct bmi08x_dev *dev)
+int8_t bmi08x_configure_anymotion(struct bmi08x_anymotion_cfg anymotion_cfg, const struct bmi08x_dev *dev)
 {
 	int8_t rslt;
 	uint16_t data[BMI08X_ACCEL_ANYMOTION_LEN];
@@ -209,7 +208,7 @@ int8_t bmi088_configure_anymotion(struct bmi08x_anymotion_cfg anymotion_cfg, con
  *  store it in the bmi08x_sensor_data structure instance
  *  passed by the user.
  */
-int8_t bmi088_get_synchronized_data(struct bmi08x_sensor_data *accel, struct bmi08x_sensor_data *gyro,
+int8_t bmi08x_get_synchronized_data(struct bmi08x_sensor_data *accel, struct bmi08x_sensor_data *gyro,
 		const struct bmi08x_dev *dev)
 {
 	int8_t rslt;
@@ -261,7 +260,7 @@ int8_t bmi088_get_synchronized_data(struct bmi08x_sensor_data *accel, struct bmi
  *  based on the user settings in the bmi08x_int_cfg
  *  structure instance.
  */
-int8_t bmi088_set_data_sync_int_config(const struct bmi08x_int_cfg *int_config,
+int8_t bmi08x_set_data_sync_int_config(const struct bmi08x_int_cfg *int_config,
 	const struct bmi08x_dev *dev)
 {
 	int8_t rslt;
@@ -304,5 +303,4 @@ static int8_t null_ptr_check(const struct bmi08x_dev *dev)
 
 	return rslt;
 }
-#endif
 /** @}*/

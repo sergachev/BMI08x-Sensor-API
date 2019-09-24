@@ -850,7 +850,7 @@ int8_t bmi08a_init(struct bmi08x_dev *dev)
 
 			if (rslt == BMI08X_OK) {
 				/* Check for chip id validity */
-				if (chip_id == BMI08X_ACCEL_CHIP_ID) {
+				if (chip_id == BMI085_ACCEL_CHIP_ID || chip_id == BMI088_ACCEL_CHIP_ID) {
 					/* Store the chip ID in dev structure */
 					dev->accel_chip_id = chip_id;
 				} else {

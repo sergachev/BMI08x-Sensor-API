@@ -93,25 +93,20 @@
 
 /** \name enable bmi085 sensor */
 #ifndef BMI08X_ENABLE_BMI085
-#define BMI08X_ENABLE_BMI085       0
+#define BMI08X_ENABLE_BMI085       1
 #endif
 /** \name enable bmi088 sensor */
 #ifndef BMI08X_ENABLE_BMI088
 #define BMI08X_ENABLE_BMI088       1
 #endif
 
-/** \name enable bmi08x sensor */
 #if BMI08X_ENABLE_BMI085 == 1
 /** \name enable bmi085 sensor */
 #define BMI08X_FEATURE_BMI085      1
-/** \name disable bmi088 accel sensor */
-#define BMI08X_FEATURE_BMI088      0
+#endif
 
-#elif BMI08X_ENABLE_BMI088 == 1
-
-/** \name disable bmi085 sensor */
-#define BMI08X_FEATURE_BMI085      0
-/** \name enable bmi088 accel sensor */
+#if BMI08X_ENABLE_BMI088 == 1
+/** \name enable bmi088 sensor */
 #define BMI08X_FEATURE_BMI088      1
 #endif
 
@@ -218,10 +213,11 @@
 
 #if BMI08X_FEATURE_BMI085 == 1
 /**\name    BMI085 Accel unique chip identifier */
-#define BMI08X_ACCEL_CHIP_ID                        UINT8_C(0x1F)
-#elif BMI08X_FEATURE_BMI088 == 1
+#define BMI085_ACCEL_CHIP_ID                        UINT8_C(0x1F)
+#endif
+#if BMI08X_FEATURE_BMI088 == 1
 /**\name    BMI088 Accel unique chip identifier */
-#define BMI08X_ACCEL_CHIP_ID                        UINT8_C(0x1E)
+#define BMI088_ACCEL_CHIP_ID                        UINT8_C(0x1E)
 #endif
 
 /**\name    Accel I2C slave address */
@@ -248,7 +244,8 @@
 #define BMI085_ACCEL_RANGE_8G                       UINT8_C(0x02)
 #define BMI085_ACCEL_RANGE_16G                      UINT8_C(0x03)
 
-#elif BMI08X_FEATURE_BMI088 == 1
+#endif
+#if BMI08X_FEATURE_BMI088 == 1
 
 /**\name  BMI088 Accel Range */
 #define BMI088_ACCEL_RANGE_3G                       UINT8_C(0x00)
